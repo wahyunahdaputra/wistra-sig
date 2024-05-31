@@ -1,4 +1,3 @@
-
 # WiStra App
 
 WiStra App adalah sebuah sistem informasi geografis yang dirancang khusus untuk mempermudah pengguna dalam menjelajahi objek wisata yang tersebar di Sulawesi Tenggara. Dengan aplikasi ini, pengguna dapat dengan mudah menemukan informasi detail tentang berbagai destinasi wisata, mulai dari tempat-tempat wisata alam yang menakjubkan hingga destinasi budaya yang kaya akan sejarah.
@@ -18,12 +17,10 @@ WiStra App adalah sebuah sistem informasi geografis yang dirancang khusus untuk 
 - [Bootstrap](https://getbootstrap.com/): Framework Frontend yang digunakan untuk mengembangkan sistem ini.
 - [MySQL](https://mysql.com/): Sistem manajemen basis data yang digunakan untuk mengelola data sistem ini.
 
-
 ## Database
 
 Hubungi saya jika membutuhkan database Wistra App.
-[Email](wahyunahdaputra@gmail.com)
-
+[Email](mailto:wahyunahdaputra@gmail.com)
 
 ## Contributors
 
@@ -38,7 +35,6 @@ Hubungi saya jika membutuhkan database Wistra App.
     </td>
   </tr>
 </table>
-
 
 ## License
 
