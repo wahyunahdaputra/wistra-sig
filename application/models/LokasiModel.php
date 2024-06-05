@@ -17,8 +17,10 @@ class LokasiModel extends CI_Model{
 	}
 
 	public function tambah_lokasi($data) {
-        $this->db->insert('wistra_lokasi', $data);
-    }
+		$this->db->insert('wistra_lokasi', $data);
+		return $this->db->affected_rows() > 0;
+	}
+	
 
 	public function edit_lokasi($id, $data) {
 		$this->db->where('id_lokasi', $id);

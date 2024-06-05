@@ -26,9 +26,8 @@
 }
 .containerrr {
   max-width: 950px;
-  width: 100%;
+  width: 80%;
   overflow: hidden;
-  padding: 80px 0;
 }
 .containerrr .main-card {
   display: flex;

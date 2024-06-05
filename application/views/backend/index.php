@@ -27,7 +27,7 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script>
-	var map = L.map('map').setView([-4.127270533534936, 122.10755301696203], 10);
+	var map = L.map('map').setView([-4.127270533534936, 122.10755301696203], 9);
 
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 maxZoom: 19,
@@ -46,6 +46,6 @@ attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreet
         var marker = L.marker([<?= $lok->lat_lng ?>]).addTo(map);
         marker.bindPopup("<b><?= $lok->nama_lokasi ?></b><br><?= $lok->lat_lng ?><br><?= $lok->keterangan ?><br><img src='<?= base_url("assets/images/{$lok->gambar}") ?>' alt='' width='150px'>");
     <?php endforeach; ?>
-<?php endif; ?>
+    <?php endif; ?>
 
 </script>

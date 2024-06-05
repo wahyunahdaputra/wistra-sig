@@ -16,4 +16,10 @@ class WelcomeModel extends CI_Model{
 		return $query->result_array();
 	}
 
+	public function cari_wisata($keyword) {
+        $this->db->like('nama_lokasi', $keyword);
+        $query = $this->db->get('wistra_lokasi');
+        return $query->result();
+    }
+
 }

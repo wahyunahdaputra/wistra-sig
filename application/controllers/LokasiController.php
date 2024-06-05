@@ -56,8 +56,10 @@ class LokasiController extends CI_Controller
             
         if ($result) {
             $this->session->set_flashdata('alert', 'tambah_lokasi');
+            log_message('debug', 'Flashdata set: tambah_lokasi');
             redirect('lokasi');
         } else {
+            log_message('debug', 'Tambah lokasi gagal');
             redirect('lokasi');
         }
     } else {
