@@ -6,9 +6,6 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-	<meta name="description" content="Sistem Informasi Penggajian Selkom Group">
-	<meta name="keywords" content="Sistem Informasi Penggajian Selkom Group">
-	<meta name="author" content="Jihad">
 	<title><?= $title ?> - WiStra</title>
 	<link rel="apple-touch-icon" href="<?= base_url() ?>assets/images/ico/apple-icon-120.png">
 	<link rel="shortcut icon" type="image/x-icon" href="<?= base_url() ?>assets/images/logo/maps.png">
@@ -102,7 +99,7 @@
 					<li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link"
 																   href="#" data-toggle="dropdown"> <span
 								class="avatar avatar-online"><img
-									src="<?= base_url() ?>assets/images/portrait/small/profil-circle-512.png"
+									src="<?= base_url() ?>assets/images/portrait/small/avatar-s-17.png"
 									alt="avatar"></span></a>
 						<div class="dropdown-menu dropdown-menu-right">
 							<div class="arrow_box_right"><a class="dropdown-item" href="#"><span

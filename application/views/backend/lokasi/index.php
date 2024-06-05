@@ -1,7 +1,7 @@
 <div class="row">
 	<div class="col-md-12">
 		<div class="card box-shadow-2">
-			<?php
+		<?php
 			if ($this->session->flashdata('alert') == 'tambah_lokasi'):
 				?>
 				<div class="alert alert-success alert-dismissible animated fadeInDown" id="feedback" role="alert">
@@ -10,6 +10,10 @@
 					</button>
 					Data berhasil ditambahkan
 				</div>
+				<script>
+					// Menghapus flashdata setelah alert ditampilkan
+					<?php $this->session->unset_userdata('alert'); ?>
+				</script>
 			<?php
 			elseif ($this->session->flashdata('alert') == 'edit_lokasi'):
 				?>
@@ -19,6 +23,10 @@
 					</button>
 					Data berhasil diupdate
 				</div>
+				<script>
+					// Menghapus flashdata setelah alert ditampilkan
+					<?php $this->session->unset_userdata('alert'); ?>
+				</script>
 			<?php
 			elseif ($this->session->flashdata('alert') == 'hapus_lokasi'):
 				?>
@@ -28,15 +36,10 @@
 					</button>
 					Data berhasil dihapus
 				</div>
-			<?php
-			elseif ($this->session->flashdata('alert') == 'absen_sudah_ada'):
-				?>
-				<div class="alert alert-danger alert-dismissible animated fadeInDown" id="feedback" role="alert">
-					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					Karyawan sudah absen hari ini
-				</div>
+				<script>
+					// Menghapus flashdata setelah alert ditampilkan
+					<?php $this->session->unset_userdata('alert'); ?>
+				</script>
 			<?php
 			endif;
 			?>
