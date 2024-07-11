@@ -11,7 +11,6 @@
 					Data berhasil ditambahkan
 				</div>
 				<script>
-					// Menghapus flashdata setelah alert ditampilkan
 					<?php $this->session->unset_userdata('alert'); ?>
 				</script>
 			<?php
@@ -24,7 +23,6 @@
 					Data berhasil diupdate
 				</div>
 				<script>
-					// Menghapus flashdata setelah alert ditampilkan
 					<?php $this->session->unset_userdata('alert'); ?>
 				</script>
 			<?php
@@ -37,7 +35,6 @@
 					Data berhasil dihapus
 				</div>
 				<script>
-					// Menghapus flashdata setelah alert ditampilkan
 					<?php $this->session->unset_userdata('alert'); ?>
 				</script>
 			<?php
@@ -56,9 +53,10 @@
 				<table class="table table-bordered zero-configuration" style="width: 100%">
 					<thead>
 					<tr>
-						<td style="text-align: center">No</td>
+						<td style="text-align: center">No.</td>
 						<td style="text-align: center">Latitude, Longitude</td>
 						<td style="text-align: center">Nama Lokasi</td>
+						<td style="text-align: center">Kategori</td>
 						<td style="text-align: center">Keterangan</td>
 						<td style="text-align: center">Gambar</td>
 						<td style="text-align: center"><i class="ft-settings spinner"></i></td>
@@ -73,8 +71,9 @@
 							<td><?= $no ?></td>
 							<td><?= $value['lat_lng'] ?></td>
 							<td><?= $value['nama_lokasi'] ?></td>
+							<td><?= $value['kategori'] ?></td>
 							<td><?= $value['keterangan'] ?></td>
-							<td><img src="assets/images/<?= $value['gambar'] ?>" alt="gambar" width="150px"></td>
+							<td><img src="assets/images/<?= $value['gambar'] ?>" alt="gambar" width="100px"></td>
 							<td>
 								<?php if ($this->session->userdata('session_hak_akses') == 'Admin'):?>
 								<a

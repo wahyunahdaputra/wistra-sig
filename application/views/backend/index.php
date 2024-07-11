@@ -19,6 +19,20 @@
                         <div id="map" style="height: 60vh"></div>
                     </div>
                 </div>
+                <div class="card-body">
+                    <!-- Keterangan marker -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h5>Keterangan:</h5>
+                            <ul class="list-unstyled">
+                                <li><img src="<?= base_url() ?>assets/images/img/marker-icon-green.png" alt="Blue Marker" style="width: 20px; height: 31px;"> Marker Biru: Wisata Perairan</li>
+                                <li><img src="<?= base_url() ?>assets/images/img/marker-icon-blue.png" alt="Green Marker" style="width: 20px; height: 31px;"> Marker Hijau: Wisata Alam</li>
+                                <li><img src="<?= base_url() ?>assets/images/img/marker-icon-orange.png" alt="Orange Marker" style="width: 20px; height: 31px;"> Marker Jingga: Wisata Budaya</li>
+                                <li><img src="<?= base_url() ?>assets/images/img/marker-icon-grey.png" alt="Grey Marker" style="width: 20px; height: 31px;"> Marker Abu-abu: Wisata Religi</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -29,21 +43,73 @@
 <script>
 	var map = L.map('map').setView([-4.127270533534936, 122.10755301696203], 9);
 
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-maxZoom: 19,
-attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-}).addTo(map);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+
+    var greenIcon = new L.Icon({
+        iconUrl: '<?= base_url() ?>assets/images/img/marker-icon-green.png',
+        shadowUrl: '<?= base_url() ?>assets/images/img/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+    });
+
+    var blueIcon = new L.Icon({
+        iconUrl: '<?= base_url() ?>assets/images/img/marker-icon-blue.png',
+        shadowUrl: '<?= base_url() ?>assets/images/img/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+    });
+
+    var orangeIcon = new L.Icon({
+        iconUrl: '<?= base_url() ?>assets/images/img/marker-icon-orange.png',
+        shadowUrl: '<?= base_url() ?>assets/images/img/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+    });
+
+    var grayIcon = new L.Icon({
+        iconUrl: '<?= base_url() ?>assets/images/img/marker-icon-grey.png',
+        shadowUrl: '<?= base_url() ?>assets/images/img/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+    });
+
+    
+    function getIcon(kategori) {
+        switch (kategori) {
+            case 'Wisata Alam':
+                return greenIcon;
+            case 'Wisata Perairan':
+                return blueIcon;
+            case 'Wisata Budaya':
+                return orangeIcon;
+            case 'Wisata Religi':
+                return grayIcon;
+            default:
+                return redIcon;
+        }
+    }
 
     <?php if (!empty($lihat_marker)): ?>
         <?php foreach ($lihat_marker as $lok): ?>
-            var marker = L.marker([<?= $lok['lat_lng'] ?>]).addTo(map);
+            var marker = L.marker([<?= $lok['lat_lng'] ?>], {icon: getIcon('<?= $lok['kategori'] ?>')}).addTo(map);
             marker.bindPopup("<b><?= $lok['nama_lokasi'] ?></b><br><?= $lok['lat_lng'] ?><br><?= $lok['keterangan'] ?><br><img src='<?= base_url("assets/images/{$lok['gambar']}") ?>' alt='' width='150px'>");
         <?php endforeach; ?>
     <?php endif; ?>
 
     <?php if (!empty($cari_wisata)): ?>
     <?php foreach ($cari_wisata as $lok): ?>
-        var marker = L.marker([<?= $lok->lat_lng ?>]).addTo(map);
+        var marker = L.marker([<?= $lok->lat_lng ?>], {icon: getIcon('<?= $lok->kategori ?>')}).addTo(map);
         marker.bindPopup("<b><?= $lok->nama_lokasi ?></b><br><?= $lok->lat_lng ?><br><?= $lok->keterangan ?><br><img src='<?= base_url("assets/images/{$lok->gambar}") ?>' alt='' width='150px'>");
     <?php endforeach; ?>
     <?php endif; ?>

@@ -35,6 +35,7 @@ class LokasiController extends CI_Controller
     if ($this->input->post('simpan')) {
         $latlng = $this->input->post('latlng');
         $namlok = $this->input->post('namlok');
+        $kat = $this->input->post('kat');
         $ket = $this->input->post('ket');
 
 		$gambar	= $_FILES['gambar']['name'];
@@ -46,6 +47,7 @@ class LokasiController extends CI_Controller
         $data = array(
             'lat_lng' => $latlng,
             'nama_lokasi' => $namlok,
+            'kategori' => $kat,
             'keterangan' => $ket,
             'gambar' => $gambar
         );
@@ -85,6 +87,7 @@ class LokasiController extends CI_Controller
         if ($this->input->post('simpan')) {
             $latlng = $this->input->post('latlng');
             $namlok = $this->input->post('namlok');
+            $kat = $this->input->post('kat');
             $ket = $this->input->post('ket');
 
             $gambar = '';
@@ -107,6 +110,7 @@ class LokasiController extends CI_Controller
             $data = array(
                 'lat_lng' => $latlng,
                 'nama_lokasi' => $namlok,
+                'kategori' => $kat,
                 'keterangan' => $ket,
                 'gambar' => $gambar
             );
