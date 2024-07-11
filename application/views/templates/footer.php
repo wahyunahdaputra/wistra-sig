@@ -174,6 +174,8 @@ echo $currentYear;
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
      crossorigin=""></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- END: Page JS-->
 
 </body>
@@ -181,12 +183,64 @@ echo $currentYear;
 
 </html>
 <script>
-	var map = L.map('map').setView([-4.127270533534936, 122.10755301696203], 13);
+	var map = L.map('map').setView([-4.127270533534936, 122.10755301696203], 9);
 
 	L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
+
+var greenIcon = new L.Icon({
+        iconUrl: '<?= base_url() ?>assets/images/img/marker-icon-green.png',
+        shadowUrl: '<?= base_url() ?>assets/images/img/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+    });
+
+    var blueIcon = new L.Icon({
+        iconUrl: '<?= base_url() ?>assets/images/img/marker-icon-blue.png',
+        shadowUrl: '<?= base_url() ?>assets/images/img/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+    });
+
+    var orangeIcon = new L.Icon({
+        iconUrl: '<?= base_url() ?>assets/images/img/marker-icon-orange.png',
+        shadowUrl: '<?= base_url() ?>assets/images/img/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+    });
+
+    var grayIcon = new L.Icon({
+        iconUrl: '<?= base_url() ?>assets/images/img/marker-icon-grey.png',
+        shadowUrl: '<?= base_url() ?>assets/images/img/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+    });
+
+
+    function getIcon(kategori) {
+        switch (kategori) {
+            case 'Wisata Alam':
+                return greenIcon;
+            case 'Wisata Perairan':
+                return blueIcon;
+            case 'Wisata Budaya':
+                return orangeIcon;
+            case 'Wisata Religi':
+                return grayIcon;
+            default:
+                return redIcon;
+        }
+    }
 
 var popup = L.popup();
 
@@ -207,7 +261,7 @@ function onMapClick(e) {
 map.on('click', onMapClick);
 
 <?php if (!empty($lokasi)): ?>
-    var marker = L.marker([<?= $lokasi['lat_lng'] ?>]).addTo(map);
+    var marker = L.marker([<?= $lokasi['lat_lng'] ?>], {icon: getIcon('<?= $lokasi['kategori'] ?>')}).addTo(map);
     marker.bindPopup("<b><?= $lokasi['nama_lokasi'] ?></b><br><?= $lokasi['lat_lng'] ?><br><?= $lokasi['keterangan'] ?><br><img src='<?= base_url("assets/images/{$lokasi['gambar']}") ?>' alt='' width='150px'>");
 <?php endif; ?>
 

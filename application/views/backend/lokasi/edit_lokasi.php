@@ -1,6 +1,6 @@
 <div class="row">
 			<div class="col-lg-8">
-				<div id="map" style="height: 70vh"></div>
+				<div id="map" style="height: 82vh"></div>
 			</div>
             <div class="col-lg-4">
 				<div class="card">
@@ -14,6 +14,16 @@
                             <fieldset class="form-group floating-label-form-group">
                                 <label for="namlok">Nama Lokasi</label>
                                 <input type="text" class="form-control" name="namlok" id="namlok" value="<?php echo $lokasi['nama_lokasi'] ?>" autocomplete="off" required>
+                            </fieldset>
+                            <fieldset class="form-group floating-label-form-group">
+                                <label for="kat">Kategori</label>
+                                <select class="form-control" name="kat" id="kat" required>
+                                    <option value="">Pilih Kategori</option>
+                                    <option value="Wisata Perairan">Wisata Perairan</option>
+                                    <option value="Wisata Alam">Wisata Alam</option>
+                                    <option value="Wisata Budaya">Wisata Budaya</option>
+                                    <option value="Wisata Religi">Wisata Religi</option>
+                                </select>
                             </fieldset>
                             <fieldset class="form-group floating-label-form-group">
                                 <label for="ket">Keterangan</label>

@@ -50,6 +50,7 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
      crossorigin=""></script>
+     
 
 
 </body>
@@ -62,6 +63,58 @@
     maxZoom: 19,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
+
+var greenIcon = new L.Icon({
+        iconUrl: '<?= base_url() ?>assets/images/img/marker-icon-green.png',
+        shadowUrl: '<?= base_url() ?>assets/images/img/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+    });
+
+    var blueIcon = new L.Icon({
+        iconUrl: '<?= base_url() ?>assets/images/img/marker-icon-blue.png',
+        shadowUrl: '<?= base_url() ?>assets/images/img/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+    });
+
+    var orangeIcon = new L.Icon({
+        iconUrl: '<?= base_url() ?>assets/images/img/marker-icon-orange.png',
+        shadowUrl: '<?= base_url() ?>assets/images/img/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+    });
+
+    var grayIcon = new L.Icon({
+        iconUrl: '<?= base_url() ?>assets/images/img/marker-icon-grey.png',
+        shadowUrl: '<?= base_url() ?>assets/images/img/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+    });
+
+    // Fungsi untuk memilih ikon berdasarkan kategori wisata
+    function getIcon(kategori) {
+        switch (kategori) {
+            case 'Wisata Alam':
+                return greenIcon;
+            case 'Wisata Perairan':
+                return blueIcon;
+            case 'Wisata Budaya':
+                return orangeIcon;
+            case 'Wisata Religi':
+                return grayIcon;
+            default:
+                return redIcon; // Default ke greenIcon jika kategori tidak dikenali
+        }
+    }
 
 var popup = L.popup();
 
@@ -81,18 +134,18 @@ function onMapClick(e) {
 
 map.on('click', onMapClick);
 
-    <?php if (!empty($lihat_marker)): ?>
+<?php if (!empty($lihat_marker)): ?>
         <?php foreach ($lihat_marker as $lok): ?>
-            var marker = L.marker([<?= $lok['lat_lng'] ?>]).addTo(map);
+            var marker = L.marker([<?= $lok['lat_lng'] ?>], {icon: getIcon('<?= $lok['kategori'] ?>')}).addTo(map);
             marker.bindPopup("<b><?= $lok['nama_lokasi'] ?></b><br><?= $lok['lat_lng'] ?><br><?= $lok['keterangan'] ?><br><img src='<?= base_url("assets/images/{$lok['gambar']}") ?>' alt='' width='150px'>");
         <?php endforeach; ?>
     <?php endif; ?>
 
     <?php if (!empty($cari_wisata)): ?>
-      <?php foreach ($cari_wisata as $lok): ?>
-        var marker = L.marker([<?= $lok->lat_lng ?>]).addTo(map);
+    <?php foreach ($cari_wisata as $lok): ?>
+        var marker = L.marker([<?= $lok->lat_lng ?>], {icon: getIcon('<?= $lok->kategori ?>')}).addTo(map);
         marker.bindPopup("<b><?= $lok->nama_lokasi ?></b><br><?= $lok->lat_lng ?><br><?= $lok->keterangan ?><br><img src='<?= base_url("assets/images/{$lok->gambar}") ?>' alt='' width='150px'>");
-      <?php endforeach; ?>
+    <?php endforeach; ?>
     <?php endif; ?>
 
 </script>

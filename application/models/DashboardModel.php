@@ -17,9 +17,9 @@ class DashboardModel extends CI_Model{
 	}
 
 	public function cari_wisata($keyword) {
-        $this->db->like('nama_lokasi', $keyword);
-        $query = $this->db->get('wistra_lokasi');
-        return $query->result();
-    }
-
+		$this->db->like('kategori', $keyword);
+		$this->db->or_like('nama_lokasi', $keyword);
+		$query = $this->db->get('wistra_lokasi');
+		return $query->result();
+	}	
 }
