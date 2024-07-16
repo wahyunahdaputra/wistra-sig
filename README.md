@@ -19,10 +19,10 @@ WiStra App adalah sebuah sistem informasi geografis yang dirancang khusus untuk 
 - [MySQL](https://mysql.com/): Sistem manajemen basis data yang digunakan untuk mengelola data sistem ini.
 
 
-## Database
+## Database Admin
 
-Hubungi saya jika membutuhkan database Wistra App.
-[Email](wahyunahdaputra@gmail.com)
+- Username: Admin
+- Password: Admin
 
 
 ## Contributors
