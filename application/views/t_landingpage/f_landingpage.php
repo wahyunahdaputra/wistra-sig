@@ -57,12 +57,44 @@
 
 </html>
 <script>
-	var map = L.map('map').setView([-4.127270533534936, 122.10755301696203], 9);
+	var map = L.map('map').setView([-4.127270533534936, 122.10755301696203], 8);
 
-	L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-}).addTo(map);
+	var tileLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    });
+
+    // Google map layer
+    var Googlemap = googleStreets = L.tileLayer('http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}', {
+        maxZoom: 20,
+        subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+    }).addTo(map);
+
+    // Hybrid
+    var Hybrid = googleHybrid = L.tileLayer('http://{s}.google.com/vt?lyrs=s,h&x={x}&y={y}&z={z}', {
+        maxZoom: 20,
+        subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+    });
+
+    // Terrain
+    var Terrain = googleTerrain = L.tileLayer('http://{s}.google.com/vt?lyrs=p&x={x}&y={y}&z={z}', {
+        maxZoom: 20,
+        subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+    });
+
+    // Layer Control
+    var baseLayers = {
+        "TileLayer": tileLayer,
+        "GoogleStreets": Googlemap,
+        "Hybrid": Hybrid,
+        "Terrain": Terrain
+    };
+
+    var overlays = {
+        // "Marker": Googlemap
+    };
+
+    L.control.layers(baseLayers, overlays).addTo(map);
 
 var greenIcon = new L.Icon({
         iconUrl: '<?= base_url() ?>assets/images/img/marker-icon-green.png',

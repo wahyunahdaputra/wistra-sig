@@ -113,6 +113,9 @@
 											</button>
 										</div>
 										<?= form_close() ?>
+										<div class="text-center items-align-center">
+											<a href="<?= base_url(''); ?>">Kembali</a>
+										</div>
 									</div>
 								</div>
 							</div>

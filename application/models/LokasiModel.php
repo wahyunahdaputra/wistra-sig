@@ -16,6 +16,18 @@ class LokasiModel extends CI_Model{
 		return $query->result_array();
 	}
 
+	public function lihat_Lokasi_paginasi($limit, $offset)
+    {
+        $this->db->limit($limit, $offset);
+        $query = $this->db->get('wistra_lokasi');
+        return $query->result_array();
+    }
+
+    public function hitung_total_Lokasi()
+    {
+        return $this->db->count_all('wistra_lokasi');
+    }
+
 	public function tambah_lokasi($data) {
 		$this->db->insert('wistra_lokasi', $data);
 		return $this->db->affected_rows() > 0;
