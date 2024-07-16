@@ -17,14 +17,29 @@ class LokasiController extends CI_Controller
 
 	public function index()
 	{
-		$data = array(
-			'lokasi' => $this->LokasiModel->lihat_Lokasi(),
-			'title' => 'Lokasi'
-		);
-		$this->load->view('templates/header',$data);
-		$this->load->view('backend/lokasi/index', $data);
-		$this->load->view('templates/footer');
-	}
+		$page = $this->input->get('page') ? $this->input->get('page') : 1;
+        $per_page = 10;
+
+        $offset = ($page - 1) * $per_page;
+
+        $this->load->model('LokasiModel');
+
+        $data = array(
+            'lokasi' => $this->LokasiModel->lihat_Lokasi(),
+            'lokasi' => $this->LokasiModel->lihat_Lokasi_paginasi($per_page, $offset),
+            'title' => 'Lokasi'
+        );
+
+        $total_rows = $this->LokasiModel->hitung_total_Lokasi();
+        $total_pages = ceil($total_rows / $per_page);
+
+        $data['current_page'] = $page;
+        $data['total_pages'] = $total_pages;
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('backend/lokasi/index', $data);
+        $this->load->view('templates/footer');
+    }
 
 	public function tambah()
 	{

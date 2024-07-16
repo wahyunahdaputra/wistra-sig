@@ -49,7 +49,7 @@
 				<?php endif; ?>
 			</div>
 			<hr>
-			<div class="card-body">
+			<div class="card-body table-responsive">
 				<table class="table table-bordered zero-configuration" style="width: 100%">
 					<thead>
 					<tr>
@@ -73,8 +73,8 @@
 							<td><?= $value['nama_lokasi'] ?></td>
 							<td><?= $value['kategori'] ?></td>
 							<td><?= $value['keterangan'] ?></td>
-							<td><img src="assets/images/<?= $value['gambar'] ?>" alt="gambar" width="100px"></td>
-							<td>
+							<td class="text-center"><img src="assets/images/<?= $value['gambar'] ?>" alt="gambar" width="100px"></td>
+							<td class="text-center">
 								<?php if ($this->session->userdata('session_hak_akses') == 'Admin'):?>
 								<a
 									href="lokasi/edit_lokasi?id_lokasi=<?= $value['id_lokasi'] ?>" class="btn btn-success btn-sm  btn-bg-gradient-x-blue-green box-shadow-2"><i class="ft-edit"></i></a>
@@ -93,6 +93,23 @@
 					</tbody>
 				</table>
 			</div>
+			<nav>
+        <ul class="pagination justify-content-center">
+            <li class="page-item <?= $current_page == 1 ? 'disabled' : '' ?>">
+                <a class="page-link" href="?page=<?= $current_page > 1 ? $current_page - 1 : 1 ?>" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <?php for ($i = 1; $i <= $total_pages; $i++): ?>
+            <li class="page-item <?= $i == $current_page ? 'active' : '' ?>"><a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a></li>
+            <?php endfor; ?>
+            <li class="page-item <?= $current_page == $total_pages ? 'disabled' : '' ?>">
+                <a class="page-link" href="?page=<?= $current_page < $total_pages ? $current_page + 1 : $total_pages ?>" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
 		</div>
 	</div>
 </div>
